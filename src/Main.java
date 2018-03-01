@@ -27,6 +27,8 @@ public class Main extends Application
         Group root = new Group();
         Scene theScene = new Scene( root );
         theStage.setScene( theScene );
+        double stageW = theStage.getWidth();
+        double stageH = theStage.getHeight();
 
 
 
@@ -34,7 +36,8 @@ public class Main extends Application
         root.getChildren().add( canvas );
 
         theStage.show();
-        canvas.setWidth(theStage.getWidth());
+        canvas.setWidth(stageW);
+        canvas.setHeight(stageH);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
