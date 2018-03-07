@@ -28,12 +28,17 @@ public class Main extends Application
         Scene theScene = new Scene( root );
         theStage.setScene( theScene );
 
-        Canvas canvas = new Canvas( 1000, 1000 );
+        Canvas canvas = new Canvas( 1000, 700 );
         root.getChildren().add( canvas );
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image tierra = new Image( "earth.png" );
+        Image tierra = new Image( "earth1.jpg" );
+        Image space = new Image("space.png");
+        gc.drawImage(space,0,0);
+        gc.drawImage(tierra,400,250);
+
+        theStage.show();
 
     }
 }
