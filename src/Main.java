@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public class Main extends Application
 {
@@ -28,15 +29,25 @@ public class Main extends Application
         Scene theScene = new Scene( root );
         theStage.setScene( theScene );
 
+
         Canvas canvas = new Canvas( 1000, 700 );
         root.getChildren().add( canvas );
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        Image tierra = new Image( "earth1.jpg" );
         Image space = new Image("space.png");
         gc.drawImage(space,0,0);
-        gc.drawImage(tierra,400,250);
+
+        Sprite1 sp1 = new Sprite1();
+        sp1.setImage("nave.png");
+        sp1.render(gc);
+
+        Sprite2 sp2 = new Sprite2();
+        sp2.setImage("earth1.png");
+        sp2.setPosition(400,250);
+        sp2.render(gc);
+
+
 
         theStage.show();
 
