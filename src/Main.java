@@ -23,7 +23,17 @@ public class Main extends Application
     @Override
     public void start(Stage theStage)
     {
+        theStage.setTitle("Defiende tu planeta!");
+        Group root = new Group();
+        Scene theScene = new Scene( root );
+        theStage.setScene( theScene );
 
+        Canvas canvas = new Canvas( 1000, 1000 );
+        root.getChildren().add( canvas );
+
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        Image tierra = new Image( "earth.png" );
 
     }
 }
