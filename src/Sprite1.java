@@ -81,54 +81,15 @@ public class Sprite1 {
 
     public double impactoX()
     {
-        if(positionX < 0)
-        {
-            if(velocityX < 0)
-            {
-                velocityX = (velocityX/velocityX)+2;
-                //return velocityX *= velocityX;
-                return velocityX;
 
-            } else return velocityX;
-        }
 
-        if (positionX > 1000 - width)
-        {
-            if(velocityX > 0)
-            {
-                velocityX = -velocityX;
-                return velocityX;
-
-            } else return velocityX;
-        }
-
-        return velocityX;
+        return velocityX = 2;
     }
 
-    public double impactoY()
-    {
-        if(positionY < 0)
-        {
-            if(velocityY < 0)
-            {
-                velocityY = (velocityY/velocityY)+2;
-                //return velocityY *= velocityY;
-                return velocityY;
+    public double impactoY()  {
 
-            } else return velocityY;
-        }
 
-        if (positionY > 700- width)
-        {
-            if(velocityY > 0)
-            {
-                velocityY = -velocityY;
-                return velocityY;
-
-            } else return velocityY;
-        }
-
-        return velocityY;
+        return velocityY = 0;
     }
 
 

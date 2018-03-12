@@ -55,36 +55,35 @@ public class Main extends Application {
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
-        for (int i = 0; i < 20; i++) {
+       for (int i = 0; i < 20; i++) {
 
             Sprite1 naves1 = new Sprite1();
             naves1.setImage("nave.png");
-            double px = 1000 * Math.random() + 1;
+            double px = 0;
             double py = 700 * Math.random() + 1;
             naves1.setPosition(px, py);
             listaNaves.add(naves1);
 
 
-    }
+   }
 
         new AnimationTimer()
         {
             double x = 500;
 
-            double y = 350;
+            double y = 0;
             public void handle(long currentNanoTime)
             {
                 // calculate time since last update.
 
-                //for (Sprite1 naves1 : listaNaves ) {
-                for (int i = 0; i<listaNaves.size();i++){
-                    listaNaves.get(i).update();
-                    listaNaves.get(i).render(gc);
-                    listaNaves.get(i).setVelocity(x,y);
+                for (Sprite1 naves1 : listaNaves ) {
 
-                    x = listaNaves.get(i).impactoX();
-                    y = listaNaves.get(i).impactoY();
+                   naves1.update();
+                   naves1.render(gc);
+                   naves1.setVelocity(x,y);
 
+                   x =naves1.impactoX();
+                    y = naves1.impactoY();
                 }
                 gc.clearRect(x, y, 1000,700);
 
@@ -93,9 +92,7 @@ public class Main extends Application {
 
 
                 for (Sprite1 naves1 : listaNaves ) {
-                    naves1.update();
                     naves1.render(gc);
-
                 }
 
 
