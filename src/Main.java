@@ -55,7 +55,7 @@ public class Main extends Application {
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             Sprite1 naves1 = new Sprite1();
             naves1.setImage("nave.png");
             double px = 350 * Math.random() + 50;
@@ -64,41 +64,18 @@ public class Main extends Application {
             listaNaves.add(naves1);
         }
 
-        IntValue points = new IntValue(0);
+        new AnimationTimer()
+        {
+            public void handle(long currentNanoTime)
+            {
+                // calculate time since last update.
 
-
-        Font theFont = Font.font("Helvetica", FontWeight.BOLD, 24);
-        gc.setFont(theFont);
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(1);
-
-        new AnimationTimer() {
-            double x = 10;
-
-            double y =0;
-
-            public void handle(long currentNanoTime) {
-
-                Image fondo = new Image( "space.jpg" );
-
-                gc.setFill(new Color(0.85, 0.85, 1.0, 1.0));
-                gc.fillRect(0, 0, 512, 512);
-
-                gc.drawImage(fondo,0,0);
-
-                for (int i = 0; i < listaNaves.size(); i++) {
-                    listaNaves.get(i).setVelocity(x,y);
-
-                    listaNaves.get(i).update(x);
-
-                    listaNaves.get(i).render(gc);
-
-                }
+                for (Sprite1 naves1 : listaNaves )
+                    naves1.render( gc );
 
 
             }
-        };
+        }.start();
 
         theStage.show();
 
