@@ -48,9 +48,9 @@ public class Sprite1 {
         velocityY += y;
     }
 
-    public void update(double time) {
-        positionX += velocityX * time;
-        positionY += velocityY * time;
+    public void update() {
+        positionX += velocityX;
+        positionY += velocityY;
     }
 
     public void render(GraphicsContext gc)
@@ -79,7 +79,57 @@ public class Sprite1 {
         return valor;
     }
 
+    public double impactoX()
+    {
+        if(positionX < 0)
+        {
+            if(velocityX < 0)
+            {
+                velocityX = (velocityX/velocityX)+2;
+                //return velocityX *= velocityX;
+                return velocityX;
 
+            } else return velocityX;
+        }
+
+        if (positionX > 1000 - width)
+        {
+            if(velocityX > 0)
+            {
+                velocityX = -velocityX;
+                return velocityX;
+
+            } else return velocityX;
+        }
+
+        return velocityX;
+    }
+
+    public double impactoY()
+    {
+        if(positionY < 0)
+        {
+            if(velocityY < 0)
+            {
+                velocityY = (velocityY/velocityY)+2;
+                //return velocityY *= velocityY;
+                return velocityY;
+
+            } else return velocityY;
+        }
+
+        if (positionY > 700- width)
+        {
+            if(velocityY > 0)
+            {
+                velocityY = -velocityY;
+                return velocityY;
+
+            } else return velocityY;
+        }
+
+        return velocityY;
+    }
 
 
 }
