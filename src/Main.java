@@ -1,4 +1,10 @@
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.beans.value.ObservableLongValue;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.Group;
@@ -11,45 +17,90 @@ import javafx.util.Duration;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
+
+import java.lang.reflect.Array;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 
-public class Main extends Application
-{
-    public static void main(String[] args)
-    {
+public class Main extends Application {
+    public static void main(String[] args) {
         launch(args);
     }
 
+
     @Override
-    public void start(Stage theStage)
-    {
+    public void start(Stage theStage) {
         theStage.setTitle("Defiende tu planeta!");
         Group root = new Group();
-        Scene theScene = new Scene( root );
-        theStage.setScene( theScene );
+        Scene theScene = new Scene(root);
+        theStage.setScene(theScene);
 
-
-        Canvas canvas = new Canvas( 1000, 700 );
-        root.getChildren().add( canvas );
+        Canvas canvas = new Canvas(1000, 700);
+        root.getChildren().add(canvas);
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+
+        //Ponemos un fondo al juego
         Image space = new Image("space.png");
-        gc.drawImage(space,0,0);
+        gc.drawImage(space, 0, 0);
 
-        Sprite1 sp1 = new Sprite1();
-        sp1.setImage("nave.png");
-        sp1.render(gc);
-
-        Sprite2 sp2 = new Sprite2();
-        sp2.setImage("earth1.png");
-        sp2.setPosition(400,250);
-        sp2.render(gc);
+        //Ponemos la imagen de la tiera en el centro de la ventana
+        Sprite1 tierra1 = new Sprite1();
+        tierra1.setImage("earth1.png");
+        tierra1.setPosition(400, 250);
+        tierra1.render(gc);
 
 
+
+        ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
+
+        for (int i = 0; i < 10; i++) {
+            Sprite1 naves1 = new Sprite1();
+            naves1.setImage("nave.png");
+            double px = 350 * Math.random() + 50;
+            double py = 350 * Math.random() + 50;
+            naves1.setPosition(px, py);
+            listaNaves.add(naves1);
+        }
+
+        IntValue points = new IntValue(0);
+
+
+        Font theFont = Font.font("Helvetica", FontWeight.BOLD, 24);
+        gc.setFont(theFont);
+        gc.setFill(Color.GREEN);
+        gc.setStroke(Color.BLACK);
+        gc.setLineWidth(1);
+
+        new AnimationTimer() {
+            double x = 10;
+
+            double y =0;
+
+            public void handle(long currentNanoTime) {
+
+                Image fondo = new Image( "space.jpg" );
+
+                gc.setFill(new Color(0.85, 0.85, 1.0, 1.0));
+                gc.fillRect(0, 0, 512, 512);
+
+                gc.drawImage(fondo,0,0);
+
+                for (int i = 0; i < listaNaves.size(); i++) {
+                    listaNaves.get(i).setVelocity(x,y);
+
+                    listaNaves.get(i).update(x);
+
+                    listaNaves.get(i).render(gc);
+
+                }
+
+
+            }
+        };
 
         theStage.show();
 
+        }
     }
-}
