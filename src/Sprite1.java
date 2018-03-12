@@ -82,14 +82,16 @@ public class Sprite1 {
     public double impactoX()
     {
 
-
         return velocityX = 2;
     }
 
     public double impactoY()  {
-
-
-        return velocityY = 0;
+      /* if (height/2<positionY){
+            return velocityY=2;
+        }else {
+            return velocityY = 0;
+        }*/
+      return velocityY;
     }
 
 

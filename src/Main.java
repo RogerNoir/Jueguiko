@@ -45,7 +45,7 @@ public class Main extends Application {
         Image space = new Image("space.png");
         gc.drawImage(space, 0, 0);
 
-        //Ponemos la imagen de la tiera en el centro de la ventana
+        //Ponemos la imagen de la tierra en el centro de la ventana
         Sprite1 tierra1 = new Sprite1();
         tierra1.setImage("earth1.png");
         tierra1.setPosition(400, 250);
@@ -55,7 +55,7 @@ public class Main extends Application {
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
-       for (int i = 0; i < 20; i++) {
+       for (int i = 0; i < 10; i++) {
 
             Sprite1 naves1 = new Sprite1();
             naves1.setImage("nave.png");
@@ -63,8 +63,6 @@ public class Main extends Application {
             double py = 700 * Math.random() + 1;
             naves1.setPosition(px, py);
             listaNaves.add(naves1);
-
-
    }
 
         new AnimationTimer()
@@ -84,6 +82,12 @@ public class Main extends Application {
 
                    x =naves1.impactoX();
                     y = naves1.impactoY();
+
+                    if (naves1.intersects(tierra1)){
+                        for (Sprite1 naves2 : listaNaves ){
+                            naves2.setPosition(0,700 * Math.random() + 1);
+                        }
+                    };
                 }
                 gc.clearRect(x, y, 1000,700);
 
@@ -94,11 +98,6 @@ public class Main extends Application {
                 for (Sprite1 naves1 : listaNaves ) {
                     naves1.render(gc);
                 }
-
-
-
-
-
 
             }
         }.start();
