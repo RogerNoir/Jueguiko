@@ -24,8 +24,13 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class Main extends Application {
+
+    int vidas = 5;
+    int puntos = 0;
+    int nivel = 1;
     public static void main(String[] args) {
         launch(args);
+
     }
 
 
@@ -40,9 +45,13 @@ public class Main extends Application {
         root.getChildren().add(canvas);
 
 
-
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        Font theFont = Font.font( "Helvetica", FontWeight.BOLD, 24 );
+        gc.setFont( theFont );
+        gc.setFill( Color.WHITE );
+        gc.setStroke( Color.WHITE );
+        gc.setLineWidth(1);
 
         //Ponemos un fondo al juego
         Image space = new Image("space.png");
@@ -76,8 +85,8 @@ public class Main extends Application {
 
                             if ( naves1.containsPoint( e.getX(), e.getY() ) )
                             {
-                                System.out.println("tocado");
-                            }
+                                puntos++;
+                           }
 
                         }
                 });
@@ -117,6 +126,18 @@ public class Main extends Application {
                 for (Sprite1 naves1 : listaNaves ) {
                     naves1.render(gc);
                 }
+
+                String pointsText = "Puntos: " + puntos;
+                gc.fillText( pointsText, 750, 36 );
+                gc.strokeText( pointsText, 750, 36 );
+
+                String lifesText = "Vidas: " + vidas;
+                gc.fillText( lifesText, 900, 36 );
+                gc.strokeText( lifesText, 900, 36 );
+
+                String levelText = "Nivel: " + nivel;
+                gc.fillText( levelText, 470, 36 );
+                gc.strokeText( levelText, 470, 36 );
 
             }
         }.start();
