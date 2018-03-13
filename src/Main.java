@@ -3,6 +3,7 @@ import javafx.application.Application;
 import javafx.beans.value.ObservableLongValue;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -38,6 +39,8 @@ public class Main extends Application {
         Canvas canvas = new Canvas(1000, 700);
         root.getChildren().add(canvas);
 
+
+
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
 
@@ -55,7 +58,7 @@ public class Main extends Application {
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
-       for (int i = 0; i < 10; i++) {
+       for (int i = 0; i < 3; i++) {
 
             Sprite1 naves1 = new Sprite1();
             naves1.setImage("nave.png");
@@ -64,6 +67,8 @@ public class Main extends Application {
             naves1.setPosition(px, py);
             listaNaves.add(naves1);
    }
+
+
 
         new AnimationTimer()
         {

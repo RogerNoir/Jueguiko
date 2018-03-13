@@ -1,4 +1,3 @@
-
 import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
@@ -13,6 +12,10 @@ public class Sprite1 {
     private double velocityY;
     private double width;
     private double height;
+    private double widthWin = 1000;
+    private double heightWin = 700;
+
+    //x=500 y=350
 
     public Sprite1() {
         positionX = 0;
@@ -43,14 +46,20 @@ public class Sprite1 {
         velocityY = y;
     }
 
+    /*
     public void addVelocity(double x, double y) {
         velocityX += x;
         velocityY += y;
     }
-
+     */
     public void update() {
-        positionX += velocityX;
-        positionY += velocityY;
+        if (velocityY<0) {
+            positionX += velocityX;
+            positionY += -(500/350)*3;
+        }else {
+            positionX += velocityX;
+            positionY += velocityY;
+        }
     }
 
     public void render(GraphicsContext gc)
@@ -81,17 +90,19 @@ public class Sprite1 {
 
     public double impactoX()
     {
-
-        return velocityX = 2;
+        if (widthWin/2>positionX){
+            return velocityX=(500/350)*3;
+        }else {
+            return velocityX-=3;
+        }
     }
 
     public double impactoY()  {
-      /* if (height/2<positionY){
-            return velocityY=2;
+        if (heightWin/2>positionY){
+            return velocityY=(500/positionY)/3;
         }else {
-            return velocityY = 0;
-        }*/
-      return velocityY;
+            return velocityY-=1;
+        }
     }
 
 
