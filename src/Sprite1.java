@@ -101,13 +101,12 @@ public class Sprite1 {
         if (heightWin/2>positionY){
             return velocityY=(500/positionY)/3;
         }else {
-            System.out.println("kiki");
             return velocityY-=1;
         }
     }
 
     public boolean containsPoint(double x,double y) {
-        if (this.positionX == x && this.positionY == y) return true;
+        if (this.positionX >= x && this.positionY >= y && x >= (this.positionX+this.width) && y >= (this.positionY+this.height)) return true;
         else return false;
 
     }

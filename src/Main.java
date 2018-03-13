@@ -69,10 +69,7 @@ public class Main extends Application {
             listaNaves.add(naves1);
    }
 
-        theScene.setOnMouseClicked(
-                new EventHandler<MouseEvent>()
-                {
-                    public void handle(MouseEvent e)
+        theScene.setOnMouseClicked(e ->
                     {
                         for (Sprite1 naves1 : listaNaves ) {
 
@@ -80,13 +77,8 @@ public class Main extends Application {
                             {
                                 System.out.println("tocado");
                             }
-                            else;
 
                         }
-
-                        }
-                        //recorrer array
-
                 });
 
 
