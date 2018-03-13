@@ -107,7 +107,15 @@ public class Sprite1 {
     }
 
     public boolean containsPoint(double x,double y) {
-        if (x >= this.positionX && y >= this.positionY && x >= (this.positionX+this.width) && y >= (this.positionY+this.height)) return true;
+        if (x >= this.positionX && y >= this.positionY && x <= (this.positionX+this.width) && y <= (this.positionY+this.height)){
+            System.out.println(x);
+            System.out.println(y);
+            System.out.println(this.positionX);
+            System.out.println(this.positionY);
+            System.out.println(width);
+            System.out.println(height);
+            return true;
+        }
         else return false;
 
     }
