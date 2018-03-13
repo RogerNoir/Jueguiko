@@ -56,6 +56,7 @@ public class Main extends Application {
 
 
 
+
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
        for (int i = 0; i < 3; i++) {
@@ -67,6 +68,26 @@ public class Main extends Application {
             naves1.setPosition(px, py);
             listaNaves.add(naves1);
    }
+
+        theScene.setOnMouseClicked(
+                new EventHandler<MouseEvent>()
+                {
+                    public void handle(MouseEvent e)
+                    {
+                        for (Sprite1 naves1 : listaNaves ) {
+
+                            if ( naves1.containsPoint( e.getX(), e.getY() ) )
+                            {
+                                System.out.println("tocado");
+                            }
+                            else;
+
+                        }
+
+                        }
+                        //recorrer array
+
+                });
 
 
 

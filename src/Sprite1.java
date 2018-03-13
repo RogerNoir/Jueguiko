@@ -105,5 +105,11 @@ public class Sprite1 {
         }
     }
 
+    public boolean containsPoint(double x,double y) {
+        if (this.positionX == x && this.positionY == y) return true;
+        else return false;
+
+    }
+
 
 }
