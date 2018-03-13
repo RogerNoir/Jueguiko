@@ -27,11 +27,12 @@ public class Main extends Application {
 
     int vidas = 5;
     int puntos = 0;
-    int nivel = 1;
+    int nivel = 0;
     public static void main(String[] args) {
         launch(args);
 
     }
+
 
 
     @Override
@@ -63,7 +64,14 @@ public class Main extends Application {
         tierra1.setPosition(400, 250);
         tierra1.render(gc);
 
+        Sprite1 tierra2 = new Sprite1();
+        tierra2.setImage("earth2.png");
+        tierra2.setPosition(350, 250);
 
+
+        Sprite1 tierra3 = new Sprite1();
+        tierra3.setImage("earth3.png");
+        tierra3.setPosition(300, 230);
 
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
@@ -92,7 +100,6 @@ public class Main extends Application {
                 });
 
 
-
         new AnimationTimer()
         {
             double x = 500;
@@ -100,15 +107,13 @@ public class Main extends Application {
             double y = 0;
             public void handle(long currentNanoTime)
             {
-                // calculate time since last update.
-
                 for (Sprite1 naves1 : listaNaves ) {
 
-                   naves1.update();
-                   naves1.render(gc);
-                   naves1.setVelocity(x,y);
+                    naves1.update();
+                    naves1.render(gc);
+                    naves1.setVelocity(x,y);
 
-                   x =naves1.impactoX();
+                    x =naves1.impactoX();
                     y = naves1.impactoY();
 
                     if (naves1.intersects(tierra1)){
@@ -116,7 +121,7 @@ public class Main extends Application {
                             naves2.setPosition(0,700 * Math.random() + 1);
                             vidas--;
                         }
-                    };
+                    }
                 }
                 gc.clearRect(x, y, 1000,700);
 
@@ -128,19 +133,97 @@ public class Main extends Application {
                     naves1.render(gc);
                 }
 
+                //mostrar puntos, vidas y nivel
                 String pointsText = "Puntos: " + puntos;
                 gc.fillText( pointsText, 750, 36 );
                 gc.strokeText( pointsText, 750, 36 );
 
                 String lifesText = "Vidas: " + vidas;
-                gc.fillText( lifesText, 900, 36 );
-                gc.strokeText( lifesText, 900, 36 );
-
-                String levelText = "Nivel: " + nivel;
+                gc.fillText( lifesText, 880, 36 );
+                gc.strokeText( lifesText, 880, 36 );
+                nivel = 1;
+                String levelText = "Nivel : " + nivel ;
                 gc.fillText( levelText, 470, 36 );
                 gc.strokeText( levelText, 470, 36 );
 
+
+
+                //level 2
+                if (puntos >= 6) {
+                    nivel = 2;
+                    levelText = "Nivel :" + nivel ;
+                    gc.fillText( levelText, 470, 36 );
+                    gc.strokeText( levelText, 470, 36 );
+                    tierra2.render(gc);
+
+                    //colision naves con tierra 2
+                    for (Sprite1 naves1 : listaNaves ) {
+                        if (naves1.intersects(tierra2)){
+                            for (Sprite1 naves2 : listaNaves ){
+                                naves2.setPosition(0,700 * Math.random() + 1);
+                                vidas--;
+                            }
+                        }
+                    }
+
+                }
+
+
+                //level 3
+                if (puntos >= 12) {
+                    nivel = 3;
+                    levelText = "Nivel :" + nivel;
+                    gc.fillText( levelText, 470, 36 );
+                    gc.strokeText( levelText, 470, 36 );
+                    tierra3.render(gc);
+
+                    //colision naves con tierra 3
+                    for (Sprite1 naves1 : listaNaves ) {
+                        if (naves1.intersects(tierra3)){
+                            for (Sprite1 naves2 : listaNaves ){
+                                naves2.setPosition(0,700 * Math.random() + 1);
+                                vidas--;
+                            }
+                        }
+                    }
+
+
+                }
+
+                //si hay 0 vidas que salga GAME OVER
+                if (vidas <= 0) {
+                    gc.clearRect(x, y, 1000,700);
+                    gc.drawImage(space, 0, 0);
+                    Font theFont1 = Font.font( "Helvetica", FontWeight.BOLD, 100 );
+                    gc.setFont( theFont1 );
+                    gc.setFill( Color.RED);
+                    gc.setStroke( Color.RED);
+                    gc.setLineWidth(1);
+
+                    String gameOver = "GAME OVER ";
+                    gc.fillText(gameOver, 200, 400);
+                    gc.strokeText(gameOver, 200, 400);
+
+                }
+
+                if(puntos == 13){
+                    gc.clearRect(x, y, 1000,700);
+                    gc.drawImage(space, 0, 0);
+                    Font theFont1 = Font.font( "Helvetica", FontWeight.BOLD, 100 );
+                    gc.setFont( theFont1 );
+                    gc.setFill( Color.GREEN);
+                    gc.setStroke( Color.GREEN );
+                    gc.setLineWidth(1);
+
+                    String gameOver = "YOU WIN ";
+                    gc.fillText(gameOver, 300, 400);
+                    gc.strokeText(gameOver, 300, 400);
+
+                }
+
+
             }
+
         }.start();
 
         theStage.show();
