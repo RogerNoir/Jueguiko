@@ -114,6 +114,7 @@ public class Main extends Application {
                     if (naves1.intersects(tierra1)){
                         for (Sprite1 naves2 : listaNaves ){
                             naves2.setPosition(0,700 * Math.random() + 1);
+                            vidas--;
                         }
                     };
                 }
