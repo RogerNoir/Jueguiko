@@ -91,15 +91,15 @@ public class Sprite1 {
     public double impactoX()
     {
         if (widthWin/2>positionX){
-            return velocityX=(500/350)*3;
+            return velocityX=(500/350)*2;
         }else {
-            return velocityX-=3;
+            return velocityX-=2;
         }
     }
 
     public double impactoY()  {
         if (heightWin/2>positionY){
-            return velocityY=(500/positionY)/3;
+            return velocityY=(500/positionY)/2;
         }else {
             return velocityY-=1;
 
@@ -108,12 +108,8 @@ public class Sprite1 {
 
     public boolean containsPoint(double x,double y) {
         if (x >= this.positionX && y >= this.positionY && x <= (this.positionX+this.width) && y <= (this.positionY+this.height)){
-            System.out.println(x);
-            System.out.println(y);
-            System.out.println(this.positionX);
-            System.out.println(this.positionY);
-            System.out.println(width);
-            System.out.println(height);
+            setPosition(0,700 * Math.random() + 1);
+
             return true;
         }
         else return false;
