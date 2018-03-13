@@ -69,6 +69,7 @@ public class Main extends Application {
             listaNaves.add(naves1);
    }
 
+
         theScene.setOnMouseClicked(e ->
                     {
                         for (Sprite1 naves1 : listaNaves ) {

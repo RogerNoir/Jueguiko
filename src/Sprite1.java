@@ -107,7 +107,7 @@ public class Sprite1 {
     }
 
     public boolean containsPoint(double x,double y) {
-        if (this.positionX >= x && this.positionY >= y && x >= (this.positionX+this.width) && y >= (this.positionY+this.height)) return true;
+        if (x >= this.positionX && y >= this.positionY && x >= (this.positionX+this.width) && y >= (this.positionY+this.height)) return true;
         else return false;
 
     }
