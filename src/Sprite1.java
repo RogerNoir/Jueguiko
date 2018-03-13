@@ -101,6 +101,7 @@ public class Sprite1 {
         if (heightWin/2>positionY){
             return velocityY=(500/positionY)/3;
         }else {
+            System.out.println("kiki");
             return velocityY-=1;
         }
     }
