@@ -46,8 +46,7 @@ public class Main extends Application {
         gc.setLineWidth(1);
 
         //Ponemos un fondo al juego
-        Image space = new Image("space.png");
-        gc.drawImage(space, 0, 0);
+        fondo(gc);
 
         //Ponemos la imagen de la tierra en el centro de la ventana
         Sprite1 tierra1 = new Sprite1();
@@ -125,7 +124,7 @@ public class Main extends Application {
                     }
                     gc.clearRect(x, y, 1000, 700);
 
-                    gc.drawImage(space, 0, 0);
+                    fondo(gc);
                     tierra1.render(gc);
 
 
@@ -136,36 +135,14 @@ public class Main extends Application {
                     printTexts(gc);
 
 
-
-
                     //si hay 0 vidas que salga GAME OVER
                     if (vidas <= 0) {
-                        gc.clearRect(x, y, 1000, 700);
-                        gc.drawImage(space, 0, 0);
-                        Font theFont1 = Font.font("Helvetica", FontWeight.BOLD, 100);
-                        gc.setFont(theFont1);
-                        gc.setFill(Color.RED);
-                        gc.setStroke(Color.RED);
-                        gc.setLineWidth(1);
-
-                        String gameOver = "GAME OVER ";
-                        gc.fillText(gameOver, 200, 400);
-                        gc.strokeText(gameOver, 200, 400);
+                        gameOver(gc,x,y);
 
                     }
                     //si llega a la puntuacion mas alta que salga YOU WIN
                     if (puntos == 50) {
-                        gc.clearRect(x, y, 1000, 700);
-                        gc.drawImage(space, 0, 0);
-                        Font theFont1 = Font.font("Helvetica", FontWeight.BOLD, 100);
-                        gc.setFont(theFont1);
-                        gc.setFill(Color.GREEN);
-                        gc.setStroke(Color.GREEN);
-                        gc.setLineWidth(1);
-
-                        String gameOver = "YOU WIN ";
-                        gc.fillText(gameOver, 300, 400);
-                        gc.strokeText(gameOver, 300, 400);
+                        win(gc,x,y);
 
                     }
 
@@ -183,16 +160,50 @@ public class Main extends Application {
         public void printTexts(GraphicsContext gc){
             //mostrar puntos, vidas y nivel
             String pointsText = "Puntos: " + puntos;
-            gc.fillText( pointsText, 730, 36 );
-            gc.strokeText( pointsText, 730, 36 );
+            gc.fillText( pointsText, 700, 36 );
+            gc.strokeText( pointsText, 700, 36 );
 
             String lifesText = "Vidas: " + vidas;
-            gc.fillText( lifesText, 880, 36 );
-            gc.strokeText( lifesText, 880, 36 );
+            gc.fillText( lifesText, 860, 36 );
+            gc.strokeText( lifesText, 860, 36 );
 
             String levelText = "Nivel : " + nivel ;
             gc.fillText( levelText, 470, 36 );
             gc.strokeText( levelText, 470, 36 );
 
+        }
+
+        public void win(GraphicsContext gc, double x, double y){
+            gc.clearRect(x, y, 1000, 700);
+            fondo(gc);
+            Font theFont1 = Font.font("Helvetica", FontWeight.BOLD, 100);
+            gc.setFont(theFont1);
+            gc.setFill(Color.GREEN);
+            gc.setStroke(Color.GREEN);
+            gc.setLineWidth(1);
+
+            String gameOver = "YOU WIN ";
+            gc.fillText(gameOver, 300, 400);
+            gc.strokeText(gameOver, 300, 400);
+        }
+
+        public void fondo(GraphicsContext gc){
+            Image space = new Image("space.png");
+            gc.drawImage(space, 0, 0);
+
+        }
+
+        public void gameOver(GraphicsContext gc, double x, double y){
+            gc.clearRect(x, y, 1000, 700);
+            fondo(gc);
+            Font theFont1 = Font.font("Helvetica", FontWeight.BOLD, 100);
+            gc.setFont(theFont1);
+            gc.setFill(Color.RED);
+            gc.setStroke(Color.RED);
+            gc.setLineWidth(1);
+
+            String gameOver = "GAME OVER ";
+            gc.fillText(gameOver, 200, 400);
+            gc.strokeText(gameOver, 200, 400);
         }
     }
