@@ -1,9 +1,6 @@
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.beans.value.ObservableLongValue;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -12,15 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.animation.Timeline;
-import javafx.animation.KeyFrame;
-import javafx.util.Duration;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
 
-
-import java.lang.reflect.Array;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -89,14 +78,14 @@ public class Main extends Application {
                             {
                                 puntos++;
 
-                                if (puntos >= 6){
+                                if (puntos >= 15){
                                     nivel = 2;
                                     tierra1.setImage("earth2.png");
                                     tierra1.setPosition(350,250);
 
                                 }
 
-                                if (puntos >= 12){
+                                if (puntos >= 30){
                                     nivel = 3;
                                     tierra1.setImage("earth3.png");
                                     tierra1.setPosition(300,230);
@@ -165,7 +154,7 @@ public class Main extends Application {
 
                     }
                     //si llega a la puntuacion mas alta que salga YOU WIN
-                    if (puntos == 15) {
+                    if (puntos == 50) {
                         gc.clearRect(x, y, 1000, 700);
                         gc.drawImage(space, 0, 0);
                         Font theFont1 = Font.font("Helvetica", FontWeight.BOLD, 100);
