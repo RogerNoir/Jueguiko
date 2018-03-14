@@ -64,14 +64,6 @@ public class Main extends Application {
         tierra1.setPosition(400, 250);
         tierra1.render(gc);
 
-        Sprite1 tierra2 = new Sprite1();
-        tierra2.setImage("earth2.png");
-        tierra2.setPosition(350, 250);
-
-
-        Sprite1 tierra3 = new Sprite1();
-        tierra3.setImage("earth3.png");
-        tierra3.setPosition(300, 230);
 
 
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
@@ -118,8 +110,7 @@ public class Main extends Application {
 
                     if (naves1.intersects(tierra1)){
                             naves1.setPosition(0,700 * Math.random() + 1);
-                            vidas--;
-
+                            vidas = vidas -1;
                     }
                 }
                 gc.clearRect(x, y, 1000,700);
@@ -153,14 +144,16 @@ public class Main extends Application {
                     levelText = "Nivel :" + nivel;
                     gc.fillText( levelText, 470, 36 );
                     gc.strokeText( levelText, 470, 36 );
-                    tierra2.render(gc);
+                    tierra1.setImage("earth2.png");
+                    tierra1.setPosition(350,250);
+                    tierra1.render(gc);
 
                     //colision naves con tierra 2
                     for (Sprite1 naves1 : listaNaves ) {
-                        if (naves1.intersects(tierra2)){
+                        if (naves1.intersects(tierra1)){
                             for (Sprite1 naves2 : listaNaves ){
                                 naves2.setPosition(0,700 * Math.random() + 1);
-                                vidas--;
+                                vidas = vidas-1;
                             }
                         }
                     }
@@ -174,14 +167,17 @@ public class Main extends Application {
                     levelText = "Nivel :" + nivel;
                     gc.fillText( levelText, 470, 36 );
                     gc.strokeText( levelText, 470, 36 );
-                    tierra3.render(gc);
+                    tierra1.setImage("earth3.png");
+                    tierra1.setPosition(300,230);
+                    tierra1.render(gc);
+
 
                     //colision naves con tierra 3
                     for (Sprite1 naves1 : listaNaves ) {
-                        if (naves1.intersects(tierra3)){
+                        if (naves1.intersects(tierra1)){
                             for (Sprite1 naves2 : listaNaves ){
                                 naves2.setPosition(0,700 * Math.random() + 1);
-                                vidas--;
+                                vidas=vidas-1;
                             }
                         }
                     }
