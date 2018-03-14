@@ -117,10 +117,9 @@ public class Main extends Application {
                     y = naves1.impactoY();
 
                     if (naves1.intersects(tierra1)){
-                        for (Sprite1 naves2 : listaNaves ){
-                            naves2.setPosition(0,700 * Math.random() + 1);
+                            naves1.setPosition(0,700 * Math.random() + 1);
                             vidas--;
-                        }
+
                     }
                 }
                 gc.clearRect(x, y, 1000,700);
@@ -151,7 +150,7 @@ public class Main extends Application {
                 //level 2
                 if (puntos >= 6) {
                     nivel = 2;
-                    levelText = "Nivel :" + nivel ;
+                    levelText = "Nivel :" + nivel;
                     gc.fillText( levelText, 470, 36 );
                     gc.strokeText( levelText, 470, 36 );
                     tierra2.render(gc);
@@ -205,8 +204,8 @@ public class Main extends Application {
                     gc.strokeText(gameOver, 200, 400);
 
                 }
-
-                if(puntos == 13){
+                //si llega a la puntuacion mas alta que salga YOU WIN
+                if(puntos == 15){
                     gc.clearRect(x, y, 1000,700);
                     gc.drawImage(space, 0, 0);
                     Font theFont1 = Font.font( "Helvetica", FontWeight.BOLD, 100 );
