@@ -14,6 +14,7 @@ public class Sprite1 {
     private double height;
     private double widthWin = 1000;
     private double heightWin = 700;
+   int vel = 1;
 
     //x=500 y=350
 
@@ -46,19 +47,14 @@ public class Sprite1 {
         velocityY = y;
     }
 
-    /*
-    public void addVelocity(double x, double y) {
-        velocityX += x;
-        velocityY += y;
-    }
-     */
     public void update() {
+
         if (velocityY<0) {
-            positionX += velocityX;
-            positionY += -(500/350)*3;
+            positionX += velocityX+vel;
+            positionY += -(500/350)*3-vel;
         }else {
-            positionX += velocityX;
-            positionY += velocityY;
+            positionX += velocityX+vel;
+            positionY += velocityY+vel;
         }
     }
 
@@ -77,16 +73,6 @@ public class Sprite1 {
         return s.getBoundary().intersects( this.getBoundary() );
     }
 
-    public boolean OnCick(double x, double y) {
-
-        Boolean valor = false;
-
-        if(x > positionX && x < positionX + width && y > positionY && y < positionY + height) {
-            valor = true;
-        } else
-            valor = false;
-        return valor;
-    }
 
     public double impactoX()
     {

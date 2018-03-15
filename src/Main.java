@@ -17,12 +17,14 @@ public class Main extends Application {
     int vidas = 5;
     int puntos = 0;
     int nivel = 1;
-    int contador=0;
+    //int contador=0;
 
     public static void main(String[] args) {
         launch(args);
 
     }
+
+
 
     @Override
     public void start(Stage theStage) {
@@ -33,6 +35,7 @@ public class Main extends Application {
 
         Canvas canvas = new Canvas(1000, 700);
         root.getChildren().add(canvas);
+
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
@@ -51,6 +54,8 @@ public class Main extends Application {
         tierra1.setPosition(400, 250);
         tierra1.render(gc);
 
+
+
         ArrayList<Sprite1> listaNaves = new ArrayList<Sprite1>();
 
        for (int i = 0; i < 3; i++) {
@@ -63,79 +68,88 @@ public class Main extends Application {
             listaNaves.add(naves1);
    }
 
+
         theScene.setOnMouseClicked(e ->
                     {
                         for (Sprite1 naves1 : listaNaves ) {
 
-                            if ( naves1.containsPoint( e.getX(), e.getY() ) ) {
+                            if ( naves1.containsPoint( e.getX(), e.getY() ) )
+                            {
                                 puntos++;
 
                                 if (puntos >= 15){
                                     nivel = 2;
                                     tierra1.setImage("earth2.png");
                                     tierra1.setPosition(350,250);
+
                                 }
 
                                 if (puntos >= 30){
                                     nivel = 3;
                                     tierra1.setImage("earth3.png");
                                     tierra1.setPosition(300,230);
+
                                 }
+
                            }
+
                         }
                 });
 
 
-        new AnimationTimer() {
+        new AnimationTimer()
+        {
             double x = 500;
 
             double y = 0;
-            public void handle(long currentNanoTime) {
-                contador++;
+            public void handle(long currentNanoTime)
+            {
 
-                if (contador % 2 == 0) {
-                    for (Sprite1 naves1 : listaNaves) {
+                        for (Sprite1 naves1 : listaNaves) {
 
-                        naves1.update();
-                        naves1.render(gc);
-                        naves1.setVelocity(x, y);
+                            naves1.update();
+                            naves1.render(gc);
+                            naves1.setVelocity(x, y);
+                            printTexts(gc);
+
+                            x = naves1.impactoX();
+                            y = naves1.impactoY();
+
+                            if (naves1.intersects(tierra1)) {
+                                naves1.setPosition(0, 700 * Math.random() + 1);
+                                vidas = vidas - 1;
+                            }
+                        }
+                        gc.clearRect(x, y, 1000, 700);
+
+                        fondo(gc);
+                        tierra1.render(gc);
+
+
+                        for (Sprite1 naves1 : listaNaves) {
+                            naves1.render(gc);
+                        }
+
                         printTexts(gc);
 
-                        x = naves1.impactoX();
-                        y = naves1.impactoY();
 
-                        if (naves1.intersects(tierra1)) {
-                            naves1.setPosition(0, 700 * Math.random() + 1);
-                            vidas = vidas - 1;
+                        //si hay 0 vidas que salga GAME OVER
+                        if (vidas <= 0) {
+                            gameOver(gc,x,y);
+
                         }
-                    }
+                        //si llega a la puntuacion mas alta que salga YOU WIN
+                        if (puntos == 50) {
+                            win(gc,x,y);
 
-                    gc.clearRect(x, y, 1000, 700);
+                        }
 
-                    fondo(gc);
-                    tierra1.render(gc);
-
-                    for (Sprite1 naves1 : listaNaves) {
-                        naves1.render(gc);
-                    }
-
-                    printTexts(gc);
-
-                    //si hay 0 vidas que salga GAME OVER
-                    if (vidas <= 0) {
-                        gameOver(gc,x,y);
-
-                    }
-                    //si llega a la puntuacion mas alta que salga YOU WIN
-                    if (puntos == 50) {
-                        win(gc,x,y);
-                    }
-                }
             }
 
         }.start();
 
         theStage.show();
+
         }
 
         public void printTexts(GraphicsContext gc){
