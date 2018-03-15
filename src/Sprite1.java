@@ -12,7 +12,7 @@ public class Sprite1 {
     private double height;
     private double widthWin = 1000;
     private double heightWin = 700;
-   int vel = 1;
+    int vel = 1;
 
     public Sprite1() {
         positionX = 0;

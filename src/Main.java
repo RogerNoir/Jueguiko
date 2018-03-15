@@ -98,7 +98,6 @@ public class Main extends Application {
                     naves1.update();
                     naves1.render(gc);
                     naves1.setVelocity(x, y);
-                    printTexts(gc);
 
                     x = naves1.impactoX();
                     y = naves1.impactoY();
