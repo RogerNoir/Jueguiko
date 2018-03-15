@@ -1,8 +1,6 @@
-import javafx.animation.AnimationTimer;
 import javafx.scene.image.Image;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.paint.Color;
 
 public class Sprite1 {
     private Image image;
@@ -15,8 +13,6 @@ public class Sprite1 {
     private double widthWin = 1000;
     private double heightWin = 700;
    int vel = 1;
-
-    //x=500 y=350
 
     public Sprite1() {
         positionX = 0;
@@ -34,7 +30,6 @@ public class Sprite1 {
     public void setImage(String filename) {
         Image i = new Image(filename);
         setImage(i);
-
     }
 
     public void setPosition(double x, double y) {
@@ -74,8 +69,7 @@ public class Sprite1 {
     }
 
 
-    public double impactoX()
-    {
+    public double impactoX() {
         if (widthWin/2>positionX){
             return velocityX=(500/350)*2;
         }else {
@@ -95,12 +89,7 @@ public class Sprite1 {
     public boolean containsPoint(double x,double y) {
         if (x >= this.positionX && y >= this.positionY && x <= (this.positionX+this.width) && y <= (this.positionY+this.height)){
             setPosition(0,700 * Math.random() + 1);
-
             return true;
-        }
-        else return false;
-
+        } else return false;
     }
-
-
 }
